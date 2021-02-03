@@ -14,7 +14,7 @@ const components = {
   example2: Example2Component,
 };
 
-type ComponentsRefs = 'example1' | 'example2';
+type ComponentRefs = 'example1' | 'example2';
 
 @Directive({
   selector: '[appLayoutItem]',
@@ -31,11 +31,11 @@ export class LayoutItemDirective implements OnChanges {
 
   ngOnChanges(): void {
     if (this.componentRef) {
-      const component = components[this.componentRef as ComponentsRefs];
+      const component = components[this.componentRef as ComponentRefs];
 
       if (component) {
         const factory = this.resolver.resolveComponentFactory<any>(component);
-        this.container.clear();
+        // this.container.clear();
         this.component = this.container.createComponent(factory);
       }
     } else {

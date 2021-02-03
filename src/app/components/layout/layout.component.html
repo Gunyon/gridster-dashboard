@@ -21,11 +21,11 @@
     [item]="item"
     (dragover)="layoutService.setDropId(item.id)"
   >
-    <ng-container
+    <ng-template
       appLayoutItem
       [componentRef]="layoutService.getComponentRef(item.id)"
     >
-    </ng-container>
+    </ng-template>
     <button (click)="layoutService.deleteItem(item.id)">
       Delete Item
     </button>
