@@ -14,6 +14,13 @@
   >
     Example 2
   </div>
+  <div
+    class="draggable"
+    draggable="true"
+    (dragend)="layoutService.dropItem('chart')"
+  >
+    Chart line
+  </div>
 </div>
 <gridster [options]="options">
   <gridster-item

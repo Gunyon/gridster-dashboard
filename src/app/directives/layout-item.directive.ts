@@ -6,12 +6,14 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
 } from '@angular/core';
+import { ChartComponent } from '../components/chart/chart.component';
 import { Example1Component } from '../components/example1/example1.component';
 import { Example2Component } from '../components/example2/example2.component';
 
 const components = {
   example1: Example1Component,
   example2: Example2Component,
+  chart: ChartComponent,
 };
 
 type ComponentRefs = 'example1' | 'example2';
