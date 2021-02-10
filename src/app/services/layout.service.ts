@@ -30,7 +30,7 @@ export class LayoutService {
 
   addItem(): void {
     this.layout.push({
-      cols: 16,
+      cols: 32,
       id: UUID.UUID(),
       rows: 3,
       x: 0,

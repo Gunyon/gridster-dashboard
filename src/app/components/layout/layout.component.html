@@ -28,6 +28,7 @@
     [item]="item"
     (dragover)="layoutService.setDropId(item.id)"
   >
+    {{ item | json }}
     <ng-template
       appLayoutItem
       [componentRef]="layoutService.getComponentRef(item.id)"
@@ -38,3 +39,4 @@
     </button>
   </gridster-item>
 </gridster>
+{{ layoutService.components | json }}
