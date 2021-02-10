@@ -4,7 +4,7 @@ import { UUID } from 'angular2-uuid';
 
 export interface IComponent {
   id: string;
-  componentRef: string;
+  componentRefs: string[];
 }
 
 @Injectable({
@@ -30,7 +30,7 @@ export class LayoutService {
 
   addItem(): void {
     this.layout.push({
-      cols: 32,
+      cols: 12,
       id: UUID.UUID(),
       rows: 3,
       x: 0,
@@ -54,20 +54,29 @@ export class LayoutService {
     const comp: IComponent = components.find(
       (c) => c.id === this.dropId
     ) as IComponent;
-    const updateIdx: number = comp
-      ? components.indexOf(comp)
-      : components.length;
-    const componentItem: IComponent = {
-      id: this.dropId,
-      componentRef: dragId,
-    };
-    this.components = Object.assign([], components, {
-      [updateIdx]: componentItem,
-    });
+    if (comp) {
+      comp.componentRefs.push(dragId);
+    } else {
+      this.components.push({
+        id: this.dropId,
+        componentRefs: [dragId],
+      });
+    }
+    // const updateIdx: number = comp
+    //   ? components.indexOf(comp)
+    //   : components.length;
+    // const componentItem: IComponent = {
+    //   id: this.dropId,
+    //   componentRef: dragId,
+    // };
+    // this.components = Object.assign([], components, {
+    //   [updateIdx]: componentItem,
+    // });
+    console.log(this.layout, this.components);
   }
 
-  getComponentRef(id: string): string | null {
+  getComponentRef(id: string): string[] | null {
     const comp = this.components.find((c) => c.id === id);
-    return comp ? comp.componentRef : null;
+    return comp ? comp.componentRefs : null;
   }
 }

@@ -30,8 +30,9 @@
   >
     {{ item | json }}
     <ng-template
+      *ngFor="let component of layoutService.getComponentRef(item.id)"
       appLayoutItem
-      [componentRef]="layoutService.getComponentRef(item.id)"
+      [componentRef]="component"
     >
     </ng-template>
     <button (click)="layoutService.deleteItem(item.id)">
