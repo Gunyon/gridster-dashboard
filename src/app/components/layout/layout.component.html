@@ -22,12 +22,17 @@
     Chart line
   </div>
 </div>
+
 <gridster [options]="options">
   <gridster-item
     *ngFor="let item of layout"
     [item]="item"
     (dragover)="layoutService.setDropId(item.id)"
+    (dragleave)="layoutService.unsetDropId()"
   >
+    <button (click)="layoutService.deleteItem(item.id)">
+      Delete Item
+    </button>
     {{ item | json }}
     <ng-template
       *ngFor="let component of layoutService.getComponentRef(item.id)"
@@ -35,9 +40,6 @@
       [componentRef]="component"
     >
     </ng-template>
-    <button (click)="layoutService.deleteItem(item.id)">
-      Delete Item
-    </button>
   </gridster-item>
 </gridster>
 {{ layoutService.components | json }}

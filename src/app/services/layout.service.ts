@@ -24,7 +24,7 @@ export class LayoutService {
   public layout: GridsterItem[] = [];
   public components: IComponent[] = [];
 
-  private dropId = '';
+  public dropId = '';
 
   constructor() {}
 
@@ -49,7 +49,17 @@ export class LayoutService {
     this.dropId = dropId;
   }
 
+  unsetDropId(): void {
+    setTimeout(() => {
+      this.dropId = '';
+    }, 100);
+  }
+
   dropItem(dragId: string): void {
+    if (this.dropId === '') {
+      return;
+    }
+
     const { components } = this;
     const comp: IComponent = components.find(
       (c) => c.id === this.dropId
